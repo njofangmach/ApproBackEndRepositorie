@@ -1,0 +1,12 @@
+package org.sid.gestapprobackend.dao;
+
+
+import org.sid.gestapprobackend.entities.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@RepositoryRestResource
+public interface CommandRepository extends JpaRepository<Category, Long>{
+
+}
