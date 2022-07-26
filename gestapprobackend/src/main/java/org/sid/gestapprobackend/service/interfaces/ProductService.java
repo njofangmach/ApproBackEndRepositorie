@@ -6,11 +6,13 @@ import java.util.Optional;
 import org.sid.gestapprobackend.entities.Category;
 import org.sid.gestapprobackend.entities.Location;
 import org.sid.gestapprobackend.entities.Product;
+import org.sid.gestapprobackend.entities.Walkin;
+import org.sid.gestapprobackend.entities.Walkout;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Service;
 
 @Component
-@CrossOrigin("*")
+@Service
 public interface ProductService {
     Product create_product(Product product);
 
@@ -27,4 +29,9 @@ public interface ProductService {
     List<Product> list_product_by_site(Long id_site);
 
     List<Product> list_product_by_command(Long id_command);
+
+    Walkin create_walkin(Walkin walkin);
+
+    Walkin create_walkout(Walkout walkout);
+
 }

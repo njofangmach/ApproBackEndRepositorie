@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class Coastcenter implements Serializable{
 	private Long oid;
 	private String name;
 	private String code;
+	@JsonIgnore
 	@OneToMany(mappedBy="coastcenter")
 	private Collection<Command> command;
 	

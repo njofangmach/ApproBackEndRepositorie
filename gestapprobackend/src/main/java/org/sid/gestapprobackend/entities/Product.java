@@ -1,5 +1,4 @@
 package org.sid.gestapprobackend.entities;
-
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -28,7 +27,7 @@ public class Product implements Serializable{
 	private Integer qtyalert;
 	private Integer qtyreapro;
 	private Integer qtyinv;
-	private Integer tva;
+	private Long tva;
 	@ManyToOne
 	private Location location;
 	@ManyToOne

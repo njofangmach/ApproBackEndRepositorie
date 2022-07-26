@@ -3,12 +3,11 @@ package org.sid.gestapprobackend.service.interfaces;
 import java.util.List;
 import java.util.Optional;
 
-import org.sid.gestapprobackend.entities.*;
+import org.sid.gestapprobackend.entities.Site;
+import org.sid.gestapprobackend.entities.Warehouse;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
-@CrossOrigin("*")
 public interface WarehouseService {
     Warehouse create_warehouse(Warehouse warehouse);
 

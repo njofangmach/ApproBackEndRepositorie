@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Warehouse;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
-@CrossOrigin("*")
 public interface CwarehouseService {
     Warehouse create_warehouse(Warehouse warehouse);
 

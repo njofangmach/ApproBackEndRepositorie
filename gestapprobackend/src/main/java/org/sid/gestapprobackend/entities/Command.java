@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,6 +34,7 @@ public class Command implements Serializable {
 	private Date datecmd;
 	private Integer delevrytime;
 	private Integer reduction;
+	@JsonIgnore
 	@OneToMany(mappedBy = "command")
 	private Collection<CommandLines> commandLine;
 	@ManyToOne
@@ -47,6 +49,9 @@ public class Command implements Serializable {
 	private State state;
 	@ManyToOne
 	private Provider provider;
+	@JsonIgnore
 	@OneToMany(mappedBy = "command")
 	private Collection<Walkin> cwalkin;
+	@ManyToOne
+	private Unity unity;
 }

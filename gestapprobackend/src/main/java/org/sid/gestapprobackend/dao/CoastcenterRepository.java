@@ -7,7 +7,6 @@ import org.sid.gestapprobackend.entities.Coastcenter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-
 @RepositoryRestResource
 public interface CoastcenterRepository extends JpaRepository<Coastcenter, Long> {
     Optional<Coastcenter> findByName(String name);

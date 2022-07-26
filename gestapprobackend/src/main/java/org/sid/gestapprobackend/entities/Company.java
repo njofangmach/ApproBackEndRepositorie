@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +24,7 @@ public class Company implements Serializable{
 	private Long oid;
 	private String code;
 	private String name;
+	@JsonIgnore
 	@OneToMany(mappedBy="company")
 	private Collection<Command> command;
 

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,7 +28,10 @@ public class Walkout implements Serializable{
     private String type;
 	@ManyToOne
 	private Warehouse refoifWarehouses;
+	@JsonIgnore
     @OneToMany (mappedBy = "cwalkout")
     private Collection<Mvtstock> warehouse;
+	@ManyToOne
+	private Walkout walkout;
 	
 }

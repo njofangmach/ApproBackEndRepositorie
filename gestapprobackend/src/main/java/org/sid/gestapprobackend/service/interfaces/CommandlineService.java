@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.CommandLines;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
-@CrossOrigin("*")
 public interface CommandlineService {
     CommandLines create_commandline(CommandLines commandline);
 

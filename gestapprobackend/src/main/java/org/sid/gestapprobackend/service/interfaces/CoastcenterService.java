@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Coastcenter;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
-@CrossOrigin("*")
 public interface CoastcenterService {
     Coastcenter create_coastcenter(Coastcenter coastcenter);
 

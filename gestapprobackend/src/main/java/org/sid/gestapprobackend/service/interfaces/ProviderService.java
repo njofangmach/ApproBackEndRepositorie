@@ -5,10 +5,10 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Provider;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Service;
 
 @Component
-@CrossOrigin("*")
+@Service
 public interface ProviderService {
     Provider create_provider(Provider provider);
 

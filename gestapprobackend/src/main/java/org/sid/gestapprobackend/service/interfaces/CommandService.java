@@ -5,16 +5,14 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Command;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
-@CrossOrigin("*")
 public interface CommandService {
     Command create_command(Command command);
 
-    Optional<Command> update_command(Integer id_command);
+    Optional<Command> update_command(Long id_command);
 
-    void cancel_command(Integer id_command);
+    void cancel_command(Long id_command);
 
     List<Command> list_command();
 

@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Category;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
 public interface CategoryService {

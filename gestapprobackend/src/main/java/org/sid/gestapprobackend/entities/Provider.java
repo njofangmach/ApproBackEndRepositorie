@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,6 +30,7 @@ public class Provider implements Serializable{
 	private String email;
 	private String observation;
 	private String town;
+	@JsonIgnore
 	@OneToMany(mappedBy="provider")
 	private Collection<Command> command;
 

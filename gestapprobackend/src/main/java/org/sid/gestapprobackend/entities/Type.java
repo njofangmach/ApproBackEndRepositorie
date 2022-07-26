@@ -3,7 +3,6 @@ package org.sid.gestapprobackend.entities;
 import java.io.Serializable;
 import java.util.Collection;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,18 +16,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity 
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
-public class Category implements Serializable{
-  
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long oid;
-	@Column(length=25)
-	private String name;
-	@Column(length=10)
-	private String code;
-	@JsonIgnore
-	@OneToMany(mappedBy="category")
-	private Collection<Product> product;
-	
+@Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class Type implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long oid;
+
+    private String name;
+    @JsonIgnore
+    @OneToMany (mappedBy = "walkout")
+    private Collection<Walkout> walkouts;
 }

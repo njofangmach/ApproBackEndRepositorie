@@ -10,8 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,10 +30,11 @@ public class Warehouse implements Serializable {
 	private String name;
 	private String code;
 	@ManyToOne
-	@JsonProperty(access=Access.WRITE_ONLY)
 	private Site site;
+	@JsonIgnore
 	@OneToMany(mappedBy = "warehouse")
 	private Collection<Command> command;
+	@JsonIgnore
 	@OneToMany(mappedBy = "warehouse")
 	private Collection<Walkout> cwalkout;
 

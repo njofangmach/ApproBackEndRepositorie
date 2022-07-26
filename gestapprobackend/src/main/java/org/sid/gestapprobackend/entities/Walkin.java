@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Walkin implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
     private Date date;
+	@JsonIgnore
     @OneToMany(mappedBy = "cwalkin")
     private Collection<Mvtstock> tabMvtStock;
     @ManyToOne

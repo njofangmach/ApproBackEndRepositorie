@@ -1,4 +1,4 @@
-package org.sid.gestapprobackend.service.implemention;
+package org.sid.gestapprobackend.service.implementation;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,6 @@ import org.sid.gestapprobackend.service.interfaces.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 public class ProviderImplement implements ProviderService {
