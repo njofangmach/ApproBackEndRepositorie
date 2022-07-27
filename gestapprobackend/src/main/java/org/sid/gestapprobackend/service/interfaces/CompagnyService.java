@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.sid.gestapprobackend.entities.Company;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
 @Component
+@CrossOrigin("*")
 public interface CompagnyService {
     Company create_compagny(Company compagny);
 

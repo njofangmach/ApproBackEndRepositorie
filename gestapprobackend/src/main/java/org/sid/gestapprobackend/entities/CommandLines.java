@@ -22,5 +22,7 @@ public class CommandLines implements Serializable{
 	private Integer reduction;
 	@ManyToOne
 	private Command command;
+	@ManyToOne
+	private Product product;
    
 }

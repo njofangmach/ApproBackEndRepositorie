@@ -27,6 +27,7 @@ import org.sid.gestapprobackend.service.interfaces.ProviderService;
 import org.sid.gestapprobackend.service.interfaces.SiteService;
 import org.sid.gestapprobackend.service.interfaces.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin("*")
 public class SettingController {
 
     @Autowired

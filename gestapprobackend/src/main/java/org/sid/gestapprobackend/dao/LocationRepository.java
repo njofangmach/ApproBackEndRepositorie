@@ -7,8 +7,10 @@ import org.sid.gestapprobackend.entities.Location;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @RepositoryRestResource
+@CrossOrigin("*")
 public interface LocationRepository extends JpaRepository<Location, Long> {
     Optional<Location> findByName(String name);
 

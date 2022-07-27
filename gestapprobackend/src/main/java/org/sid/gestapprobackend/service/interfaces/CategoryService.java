@@ -5,8 +5,12 @@ import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Category;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
+@CrossOrigin("*")
+@Service
 public interface CategoryService {
     Category create_category(Category category);
 

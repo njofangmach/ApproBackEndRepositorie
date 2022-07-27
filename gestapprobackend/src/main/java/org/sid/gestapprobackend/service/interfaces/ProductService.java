@@ -10,9 +10,11 @@ import org.sid.gestapprobackend.entities.Walkin;
 import org.sid.gestapprobackend.entities.Walkout;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
 @Service
+@CrossOrigin("*")
 public interface ProductService {
     Product create_product(Product product);
 

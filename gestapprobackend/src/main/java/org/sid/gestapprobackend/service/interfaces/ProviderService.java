@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.sid.gestapprobackend.entities.Provider;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Component
 @Service
+@CrossOrigin("*")
 public interface ProviderService {
     Provider create_provider(Provider provider);
 
