@@ -12,7 +12,9 @@ import org.sid.gestapprobackend.entities.Unity;
 import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CommandImplement implements CommandService {
 
     @Autowired

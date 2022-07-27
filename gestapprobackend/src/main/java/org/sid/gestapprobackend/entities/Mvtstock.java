@@ -9,11 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+
+@CrossOrigin("*")
 @Entity 
 @Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class Mvtstock implements Serializable{
