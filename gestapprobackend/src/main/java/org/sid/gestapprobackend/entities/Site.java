@@ -28,7 +28,6 @@ public class Site implements Serializable{
 	
 	private String name;
 	private String code;
-	@JsonIgnore
 	@OneToMany(mappedBy="site")
 	private Collection<Warehouse> warehouse;
 	

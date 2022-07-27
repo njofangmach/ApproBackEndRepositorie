@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +34,7 @@ public class Warehouse implements Serializable {
 	private Long oid;
 	private String name;
 	private String code;
+	@JsonProperty(access=Access.WRITE_ONLY)
 	@ManyToOne
 	private Site site;
 	@JsonIgnore
