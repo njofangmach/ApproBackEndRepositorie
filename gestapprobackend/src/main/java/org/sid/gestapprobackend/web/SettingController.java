@@ -14,11 +14,13 @@ import org.sid.gestapprobackend.entities.Category;
 import org.sid.gestapprobackend.entities.Coastcenter;
 import org.sid.gestapprobackend.entities.Company;
 import org.sid.gestapprobackend.entities.Site;
+import org.sid.gestapprobackend.entities.Unity;
 import org.sid.gestapprobackend.entities.Location;
 import org.sid.gestapprobackend.entities.Provider;
 import org.sid.gestapprobackend.entities.Warehouse;
 import org.sid.gestapprobackend.service.interfaces.CategoryService;
 import org.sid.gestapprobackend.service.interfaces.CoastcenterService;
+import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.sid.gestapprobackend.service.interfaces.CompagnyService;
 import org.sid.gestapprobackend.service.interfaces.LocationService;
 import org.sid.gestapprobackend.service.interfaces.ProviderService;
@@ -64,6 +66,8 @@ public class SettingController {
     CoastcenterService coastcenterService;
     @Autowired
     CompagnyService compagnyService;
+    @Autowired
+    CommandService commandService;
 
     @PostMapping(value = "/add_site")
     public Site create_site(@RequestBody Site site) {
@@ -183,6 +187,11 @@ public class SettingController {
     @GetMapping(value = "/list_compagny")
     public List<Company> list_compagny() {
         return compagnyService.list_compagny();
+    }
+
+    @GetMapping(value = "/list_unities")
+    public List<Unity> list_unities() {
+        return commandService.list_Unities();
     }
 
 }

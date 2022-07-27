@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.sid.gestapprobackend.entities.Command;
+import org.sid.gestapprobackend.entities.Unity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,6 +16,8 @@ public interface CommandService {
     void cancel_command(Long id_command);
 
     List<Command> list_command();
+
+    List<Unity> list_Unities();
 
 
 }
