@@ -31,5 +31,5 @@ public class Unity implements Serializable{
 	private String name;
 	@JsonIgnore
     @OneToMany(mappedBy = "unity")
-    private Collection<Command> commands;
+    private Collection<CommandLines> commandsLines;
 }

@@ -28,5 +28,7 @@ public class CommandLines implements Serializable{
 	private Command command;
 	@ManyToOne
 	private Product product;
+	@ManyToOne
+	private Unity unity;
    
 }
