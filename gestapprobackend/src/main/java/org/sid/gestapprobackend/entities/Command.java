@@ -34,9 +34,6 @@ public class Command implements Serializable {
 	private Date datecmd;
 	private Integer delevrytime;
 	private Integer reduction;
-	@JsonIgnore
-	@OneToMany(mappedBy = "command")
-	private Collection<CommandLines> commandLine;
 	@ManyToOne
 	private Coastcenter coastcenter;
 	@ManyToOne
@@ -51,7 +48,7 @@ public class Command implements Serializable {
 	private Provider provider;
 	@JsonIgnore
 	@OneToMany(mappedBy = "command")
+	private Collection<CommandLines> commandLine;
+	@OneToMany(mappedBy = "command")
 	private Collection<Walkin> cwalkin;
-	@ManyToOne
-	private Unity unity;
 }
