@@ -15,7 +15,9 @@ import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin("*")
 @Service
 public class CommandImplement implements CommandService {
 
@@ -36,7 +38,7 @@ public class CommandImplement implements CommandService {
         } else {
             Optional<Command> get_command = commandRepository.findByAsknumOrNumcmd(command.getAsknum(),
                     command.getNumcmd());
-            if (get_command.isEmpty()) {
+            if (!get_command.isPresent()) {
                 Command new_command = commandRepository.save(command);
                 for (int i = 0; i < commandLines.size(); i++) {
                     commandLines.get(i).setQuantity(commandLines.get(i).getQuantity());

@@ -9,7 +9,9 @@ import org.sid.gestapprobackend.service.interfaces.CompagnyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin("*")
 @Service
 public class CompagnyImplement implements CompagnyService {
 
