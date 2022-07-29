@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -42,6 +44,7 @@ public class Product implements Serializable {
 	private Location location;
 	@ManyToOne
 	private Category category;
+	@JsonIgnore
 	@OneToMany(mappedBy = "product")
 	private Collection<CommandLines> commandLine;
 

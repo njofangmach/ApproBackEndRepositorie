@@ -14,6 +14,8 @@ import org.sid.gestapprobackend.entities.Category;
 import org.sid.gestapprobackend.entities.Coastcenter;
 import org.sid.gestapprobackend.entities.Company;
 import org.sid.gestapprobackend.entities.Site;
+import org.sid.gestapprobackend.entities.State;
+import org.sid.gestapprobackend.entities.Unity;
 import org.sid.gestapprobackend.entities.Location;
 import org.sid.gestapprobackend.entities.Provider;
 import org.sid.gestapprobackend.entities.Warehouse;
@@ -188,6 +190,16 @@ public class SettingController {
     @GetMapping(value = "/list_compagny")
     public List<Company> list_compagny() {
         return compagnyService.list_compagny();
+    }
+
+    @GetMapping(value = "/list_state")
+    public List<State> list_state() {
+        return commandService.list_state();
+    }
+
+    @GetMapping(value = "/list_unity")
+    public List<Unity> list_unity() {
+        return commandService.list_Unities();
     }
 
 }

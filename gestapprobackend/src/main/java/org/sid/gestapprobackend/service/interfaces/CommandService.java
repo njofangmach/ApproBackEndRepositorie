@@ -21,7 +21,9 @@ public interface CommandService {
 
     void cancel_command(Long id_command);
 
-    List<Command> list_command();
+    List<Command> list_commandWIthCommandLines();
+
+    List<Object[]> list_command();
 
     List<Unity> list_Unities();
 

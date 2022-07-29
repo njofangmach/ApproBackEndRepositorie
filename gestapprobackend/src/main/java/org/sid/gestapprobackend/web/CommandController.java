@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.sid.gestapprobackend.entities.Command;
 import org.sid.gestapprobackend.entities.CommandLines;
-import org.sid.gestapprobackend.entities.State;
-import org.sid.gestapprobackend.entities.Unity;
 import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,14 +31,14 @@ public class CommandController {
         return commandService.create_command(param.getCommand(), param.getCommandLines());
     }
 
-    @GetMapping(value = "/list_state")
-    public List<State> list_state() {
-        return commandService.list_state();
+    @GetMapping(value = "/list_commandWIthCommandLines")
+    public List<Command> list_commandWIthCommandLines() {
+        return commandService.list_commandWIthCommandLines();
     }
 
-    @GetMapping(value = "/list_unity")
-    public List<Unity> list_unity() {
-        return commandService.list_Unities();
+    @GetMapping(value = "/list_command")
+    public List<Object[]> list_command() {
+        return commandService.list_command();
     }
 
 }

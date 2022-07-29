@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,12 +30,13 @@ public class Walkout implements Serializable{
 	private Long oid;
 	private Date date;
     private String type;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Warehouse refoifWarehouses;
-	@JsonIgnore
-    @OneToMany (mappedBy = "cwalkout")
-    private Collection<Mvtstock> warehouse;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Walkout walkout;
+    @OneToMany (mappedBy = "cwalkout")
+    private Collection<Mvtstock> warehouse;
 	
 }

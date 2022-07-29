@@ -11,7 +11,6 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,7 +30,6 @@ public class Type implements Serializable {
     private Long oid;
 
     private String name;
-    @JsonIgnore
     @OneToMany (mappedBy = "walkout")
     private Collection<Walkout> walkouts;
 }

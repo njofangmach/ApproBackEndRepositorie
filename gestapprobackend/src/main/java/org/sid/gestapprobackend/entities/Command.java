@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,8 +39,6 @@ public class Command implements Serializable {
 	@ManyToOne
 	private Coastcenter coastcenter;
 	@ManyToOne
-	private Product product;
-	@ManyToOne
 	private Company company;
 	@ManyToOne
 	private Warehouse warehouse;
@@ -49,7 +46,6 @@ public class Command implements Serializable {
 	private State state;
 	@ManyToOne
 	private Provider provider;
-	@JsonIgnore
 	@OneToMany(mappedBy = "command")
 	private Collection<CommandLines> commandLine;
 	@OneToMany(mappedBy = "command")

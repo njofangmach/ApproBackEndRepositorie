@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,6 +27,7 @@ public class CommandLines implements Serializable{
 	private Integer quantity;
 	private Integer unitprice;
 	private Integer reduction;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToOne
 	private Command command;
 	@ManyToOne

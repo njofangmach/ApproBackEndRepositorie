@@ -26,7 +26,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Warehouse implements Serializable {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long oid;

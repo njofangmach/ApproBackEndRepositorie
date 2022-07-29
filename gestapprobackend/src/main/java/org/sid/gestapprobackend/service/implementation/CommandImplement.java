@@ -3,6 +3,10 @@ package org.sid.gestapprobackend.service.implementation;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.sid.gestapprobackend.dao.CommandRepository;
 import org.sid.gestapprobackend.dao.CommandlineRepository;
 import org.sid.gestapprobackend.dao.StateRepository;
@@ -15,10 +19,15 @@ import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Service
+@CrossOrigin("*")
 public class CommandImplement implements CommandService {
 
+    @PersistenceContext
+    EntityManager em;
+    
     @Autowired
     CommandRepository commandRepository;
     @Autowired
@@ -30,13 +39,13 @@ public class CommandImplement implements CommandService {
 
     @Override
     public Command create_command(Command command, List<CommandLines> commandLines) {
-        if (commandLines.isEmpty() || commandLines.size() == 0) {
+        if (commandLines.isEmpty() || commandLines == null) {
             throw new ResourceNotFoundException(
                     "Pour effectuer une commande une faux avoir au moins une ligne de commande");
         } else {
             Optional<Command> get_command = commandRepository.findByAsknumOrNumcmd(command.getAsknum(),
                     command.getNumcmd());
-            if (get_command.isEmpty()) {
+            if (!get_command.isPresent()) {
                 Command new_command = commandRepository.save(command);
                 for (int i = 0; i < commandLines.size(); i++) {
                     commandLines.get(i).setQuantity(commandLines.get(i).getQuantity());
@@ -74,9 +83,8 @@ public class CommandImplement implements CommandService {
     }
 
     @Override
-    public List<Command> list_command() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Command> list_commandWIthCommandLines() {
+        return commandRepository.findAll();
     }
 
     @Override
@@ -87,6 +95,13 @@ public class CommandImplement implements CommandService {
     @Override
     public List<State> list_state() {
         return stateRepository.findAll();
+    }
+
+    @Override
+    public List<Object[]> list_command() {
+        Query q = em.createNativeQuery("SELECT * FROM command");
+        List<Object[]> authors = q.getResultList();
+        return authors;
     }
 
 }

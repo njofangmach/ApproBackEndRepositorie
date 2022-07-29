@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -33,9 +34,9 @@ public class Walkin implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long oid;
     private Date date;
-	@JsonIgnore
     @OneToMany(mappedBy = "cwalkin")
     private Collection<Mvtstock> tabMvtStock;
+	@JsonProperty(access = Access.WRITE_ONLY)
     @ManyToOne
     private Command command;
 
