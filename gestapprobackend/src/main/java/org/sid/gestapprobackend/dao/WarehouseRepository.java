@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface WarehouseRepository extends JpaRepository<Warehouse, Long> {
     Optional<Warehouse> findByName(String name);
 
-    List<Warehouse> findByNameOrCode(String name, String code);
+    List<Warehouse> findByCode(String code);
 
     Optional<Warehouse> findAllByNameOrCode(String name, String code);
 

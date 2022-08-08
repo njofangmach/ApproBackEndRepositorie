@@ -21,7 +21,7 @@ public class CategoryImplement implements CategoryService {
         if (getCategory.isEmpty()) {
             return categoryRepository.save(category);
         } else {
-            throw new ResourceNotFoundException("This categorie exist");
+            return category;
         }
     }
 

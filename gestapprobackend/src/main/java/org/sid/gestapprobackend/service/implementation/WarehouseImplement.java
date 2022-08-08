@@ -19,12 +19,11 @@ public class WarehouseImplement implements WarehouseService {
 
     @Override
     public Warehouse create_warehouse(Warehouse warehouse) {
-        List<Warehouse> getwarehouse = warehouseRepository.findByNameAndCodeAndSite(warehouse.getName(),
-                warehouse.getCode(), warehouse.getSite());
+        List<Warehouse> getwarehouse = warehouseRepository.findByCode(warehouse.getCode());
         if (getwarehouse.isEmpty()) {
             return warehouseRepository.save(warehouse);
         } else {
-            throw new ResourceNotFoundException("This site exist");
+            throw new ResourceNotFoundException("This Code warehouse exist");
         }
     }
 

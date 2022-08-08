@@ -22,7 +22,7 @@ public class ProviderImplement implements ProviderService {
         if (get_provider.isEmpty()) {
             return providerRepoitory.save(provider);
         } else {
-            throw new ResourceNotFoundException("This provider exist");
+            throw new ResourceNotFoundException("This provider exist because code or name of this provider are already uset");
         }
     }
 

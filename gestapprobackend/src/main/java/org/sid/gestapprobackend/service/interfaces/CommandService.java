@@ -1,5 +1,6 @@
 package org.sid.gestapprobackend.service.interfaces;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,13 +18,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CommandService {
     Command create_command(Command command, List<CommandLines> commandLines);
 
+    Command create_bon_command(Command command, List<CommandLines> commandLines);
+
     Optional<Command> update_command(Long id_command);
 
     void cancel_command(Long id_command);
 
-    List<Command> list_commandWIthCommandLines();
+    List<CommandLines> CommandLinesByCommand(Command command);
 
-    List<Object[]> list_command();
+    List<Command> list_command();
 
     List<Unity> list_Unities();
 

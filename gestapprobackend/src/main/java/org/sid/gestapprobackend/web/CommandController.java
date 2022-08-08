@@ -8,6 +8,7 @@ import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,13 +32,13 @@ public class CommandController {
         return commandService.create_command(param.getCommand(), param.getCommandLines());
     }
 
-    @GetMapping(value = "/list_commandWIthCommandLines")
-    public List<Command> list_commandWIthCommandLines() {
-        return commandService.list_commandWIthCommandLines();
+    @GetMapping(value = "/CommandLinesByCommand/{id_command}")
+    public List<CommandLines> CommandLinesByCommand(@PathVariable Command id_command) {
+        return commandService.CommandLinesByCommand(id_command);
     }
 
     @GetMapping(value = "/list_command")
-    public List<Object[]> list_command() {
+    public List<Command> list_command() {
         return commandService.list_command();
     }
 
