@@ -11,6 +11,7 @@ import org.sid.gestapprobackend.dao.StateRepository;
 import org.sid.gestapprobackend.dao.UnitiesRepository;
 import org.sid.gestapprobackend.entities.Command;
 import org.sid.gestapprobackend.entities.CommandLines;
+import org.sid.gestapprobackend.entities.CommandView;
 import org.sid.gestapprobackend.entities.State;
 import org.sid.gestapprobackend.entities.Unity;
 import org.sid.gestapprobackend.service.interfaces.CommandService;
@@ -83,19 +84,6 @@ public class CommandImplement implements CommandService {
         }
         return (command);
     }
-
-    @Override
-    public Optional<Command> update_command(Long id_command) {
-        // TODO Auto-generated method stub
-        return Optional.empty();
-    }
-
-    @Override
-    public void cancel_command(Long id_command) {
-        // TODO Auto-generated method stub
-
-    }
-
     @Override
     public List<CommandLines> CommandLinesByCommand(Command command) {
         return commandlineRepository.findByCommand(command);
@@ -112,35 +100,26 @@ public class CommandImplement implements CommandService {
     }
 
     @Override
-    public List<Command> list_command() {
-        // Query q = em.createNativeQuery("SELECT * FROM command");
-        // List<Object[]> authors = q.getResultList();
-        return commandRepository.findAll();
+    public List<CommandView> list_command() {
+        return commandRepository.findAllCommandBy();
     }
 
     @Override
-    public Command create_bon_command(Command command, List<CommandLines> commandLines) {
-        Optional<Command> last_command = commandRepository.findById(command.getOid());
-        if (last_command.isPresent()) {
-            last_command.get().setDatecmd(command.getDatecmd());
-            last_command.get().setNumcmd(command.getNumcmd());
-            last_command.get().setCoastcenter(command.getCoastcenter());
-            last_command.get().setProvider(command.getProvider());
-            commandRepository.save(last_command.get());
-
-            for (int j = 0; j < commandLines.size(); j++) {
-                Optional<CommandLines> get_commandLine = commandlineRepository.findById(commandLines.get(j).getOid());
-                if (get_commandLine.isPresent()) {
-                    get_commandLine.get().setQuantity(commandLines.get(j).getQuantity());
-                    get_commandLine.get().setUnity(commandLines.get(j).getUnity());
-                    get_commandLine.get().setUnitprice(commandLines.get(j).getUnitprice());
-                    get_commandLine.get().setReduction(commandLines.get(j).getReduction());
-                    commandlineRepository.save(get_commandLine.get());
-                }
-            }
-
-        }
-        return command;
+    public List<Command> findCmdWithCmdLine(Long id_command) {
+        return commandRepository.findByOid(id_command);
     }
+
+    @Override
+    public Optional<Command> update_command(Long id_command) {
+        // TODO Auto-generated method stub
+        return Optional.empty();
+    }
+
+    @Override
+    public void cancel_command(Long id_command) {
+        // TODO Auto-generated method stub
+
+    }
+
 
 }

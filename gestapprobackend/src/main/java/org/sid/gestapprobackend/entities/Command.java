@@ -47,7 +47,6 @@ public class Command implements Serializable {
 	private State state;
 	@ManyToOne
 	private Provider provider;
-	@JsonIgnore
 	@OneToMany(mappedBy = "command")
 	private Collection<CommandLines> commandLine;
 	@OneToMany(mappedBy = "command")

@@ -2,8 +2,10 @@ package org.sid.gestapprobackend.web;
 
 import java.util.List;
 
+import org.sid.gestapprobackend.dao.CommandRepository;
 import org.sid.gestapprobackend.entities.Command;
 import org.sid.gestapprobackend.entities.CommandLines;
+import org.sid.gestapprobackend.entities.CommandView;
 import org.sid.gestapprobackend.service.interfaces.CommandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommandController {
     @Autowired
     CommandService commandService;
+    @Autowired
+    CommandRepository commandRepository;
 
     @PostMapping(value = "/add_command")
     public Command add_command(@RequestBody Param param) {
@@ -38,8 +42,13 @@ public class CommandController {
     }
 
     @GetMapping(value = "/list_command")
-    public List<Command> list_command() {
+    public List<CommandView> list_command() {
         return commandService.list_command();
+    }
+
+    @GetMapping(value = "/findCmdWithCmdLine/{id_command}")
+    public List<Command> list_command1(@PathVariable Long id_command) {
+        return commandService.findCmdWithCmdLine(id_command);
     }
 
 }
