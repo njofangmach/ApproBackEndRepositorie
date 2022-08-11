@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface LocationService {
     Location create_location(Location location);
 
-    Optional<Location> update_location(Long id_location, Location location);
+    Optional<Location> update_location(Location location);
 
     //List<Location> list_product_by_location(Long id_location);
 

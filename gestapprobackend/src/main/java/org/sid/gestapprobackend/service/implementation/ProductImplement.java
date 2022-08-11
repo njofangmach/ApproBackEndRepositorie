@@ -31,8 +31,8 @@ public class ProductImplement implements ProductService {
     }
 
     @Override
-    public Optional<Product> update_product(Long id_product, Product product) {
-        Optional<Product> get_product = productRepository.findById(id_product);
+    public Optional<Product> update_product(Product product) {
+        Optional<Product> get_product = productRepository.findById(product.getOid());
         if (get_product.isPresent()) {
             if (get_product.get().getName() == product.getName()) {
                 throw new ResourceNotFoundException("This product name exist");

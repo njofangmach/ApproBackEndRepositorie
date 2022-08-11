@@ -27,8 +27,8 @@ public class ProviderImplement implements ProviderService {
     }
 
     @Override
-    public Optional<Provider> update_provider(Long id_provider, Provider provider) {
-        Optional<Provider> get_provider = providerRepoitory.findById(Long.valueOf(id_provider));
+    public Optional<Provider> update_provider(Provider provider) {
+        Optional<Provider> get_provider = providerRepoitory.findById(Long.valueOf(provider.getOid()));
         if (get_provider.isPresent()) {
             if (get_provider.get().getName() == provider.getName()) {
                 throw new ResourceNotFoundException("This provider name exist");

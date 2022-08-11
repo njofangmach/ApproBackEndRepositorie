@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CommandService {
     Command create_command(Command command, List<CommandLines> commandLines);
 
-    Optional<Command> update_command(Long id_command);
+    Optional<Command> update_command(Command command);
 
     void cancel_command(Long id_command);
 

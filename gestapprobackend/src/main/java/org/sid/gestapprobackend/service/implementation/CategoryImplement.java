@@ -26,8 +26,8 @@ public class CategoryImplement implements CategoryService {
     }
 
     @Override
-    public Optional<Category> update_category(Category category, Long id_category) {
-        Optional<Category> get_category = categoryRepository.findById(id_category);
+    public Optional<Category> update_category(Category category) {
+        Optional<Category> get_category = categoryRepository.findById(category.getOid());
         if (get_category.isPresent()) {
             if (get_category.get().getName() == category.getName()) {
                 throw new ResourceNotFoundException("This category name exist");

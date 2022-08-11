@@ -77,9 +77,9 @@ public class SettingController {
         return siteService.create_site(site);
     }
 
-    @PutMapping(value = "/update_site/{id}")
-    public Optional<Site> update_site(@RequestBody Site site, @PathVariable Integer id) {
-        return siteService.update_site(site, id);
+    @PutMapping(value = "/update_site")
+    public Optional<Site> update_site(@RequestBody Site site) {
+        return siteService.update_site(site);
     }
 
     @GetMapping(value = "/list_site")
@@ -102,9 +102,9 @@ public class SettingController {
         return warehouseService.create_warehouse(warehouse);
     }
 
-    @PutMapping(value = "/update_warehouse/{id}")
-    public Optional<Warehouse> updateWarehouse(@RequestBody Warehouse warehouse, @PathVariable Long id) {
-        return warehouseService.update_warehouse(warehouse, id);
+    @PutMapping(value = "/update_warehouse")
+    public Optional<Warehouse> updateWarehouse(@RequestBody Warehouse warehouse) {
+        return warehouseService.update_warehouse(warehouse);
     }
 
     @GetMapping(value = "/list_warehouse")
@@ -127,9 +127,9 @@ public class SettingController {
         return categoryService.list_category();
     }
 
-    @PutMapping(value = "/update_category/{id}")
-    public Optional<Category> update_category(@RequestBody Category category, @PathVariable Long id) {
-        return categoryService.update_category(category, id);
+    @PutMapping(value = "/update_category")
+    public Optional<Category> update_category(@RequestBody Category category) {
+        return categoryService.update_category(category);
     }
 
     @PostMapping(value = "/add_location")
@@ -137,9 +137,9 @@ public class SettingController {
         return locationService.create_location(location);
     }
 
-    @PutMapping(value = "/update_location/{id}")
-    public Optional<Location> update_location(@RequestBody Location location, @PathVariable Long id) {
-        return locationService.update_location(id, location);
+    @PutMapping(value = "/update_location")
+    public Optional<Location> update_location(@RequestBody Location location) {
+        return locationService.update_location(location);
     }
 
     @GetMapping(value = "/list_location")
@@ -152,9 +152,9 @@ public class SettingController {
         return providerService.create_provider(provider);
     }
 
-    @PutMapping(value = "/update_provider/{id}")
-    public Optional<Provider> update_provider(@RequestBody Provider provider, @PathVariable Long id) {
-        return providerService.update_provider(id, provider);
+    @PutMapping(value = "/update_provider")
+    public Optional<Provider> update_provider(@RequestBody Provider provider) {
+        return providerService.update_provider(provider);
     }
 
     @GetMapping(value = "/list_provider")
@@ -167,9 +167,9 @@ public class SettingController {
         return coastcenterService.create_coastcenter(coastcenter);
     }
 
-    @PutMapping(value = "/update_coastcenter/{id}")
-    public Optional<Coastcenter> update_coastcenter(@RequestBody Coastcenter coastcenter, @PathVariable Long id) {
-        return coastcenterService.update_coastcenter(id, coastcenter);
+    @PutMapping(value = "/update_coastcenter")
+    public Optional<Coastcenter> update_coastcenter(@RequestBody Coastcenter coastcenter) {
+        return coastcenterService.update_coastcenter(coastcenter);
     }
 
     @GetMapping(value = "/list_coastcenter")
@@ -177,14 +177,14 @@ public class SettingController {
         return coastcenterService.list_coastcenter();
     }
 
-    @PostMapping(value = "/add_compagy")
+    @PostMapping(value = "/add_compagny")
     public Company add_compagy(@RequestBody Company compagny) {
         return compagnyService.create_compagny(compagny);
     }
 
-    @PutMapping(value = "/update_compagny/{id}")
-    public Optional<Company> update_compagny(@RequestBody Company company, @PathVariable Long id) {
-        return compagnyService.update_compagny(id, company);
+    @PutMapping(value = "/update_compagny")
+    public Optional<Company> update_compagny(@RequestBody Company company) {
+        return compagnyService.update_compagny(company);
     }
 
     @GetMapping(value = "/list_compagny")

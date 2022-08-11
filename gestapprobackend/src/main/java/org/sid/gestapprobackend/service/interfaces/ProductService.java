@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface ProductService {
     Product create_product(Product product);
 
-    Optional<Product> update_product(Long id_product, Product product);
+    Optional<Product> update_product( Product product);
 
     List<Product> list_product();
 

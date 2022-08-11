@@ -28,8 +28,8 @@ public class CoastCenterImplement implements CoastcenterService {
     }
 
     @Override
-    public Optional<Coastcenter> update_coastcenter(Long id_coastcenter, Coastcenter coastcenter) {
-        Optional<Coastcenter> get_coastCenter = coastcenterRepository.findById(Long.valueOf(id_coastcenter));
+    public Optional<Coastcenter> update_coastcenter(Coastcenter coastcenter) {
+        Optional<Coastcenter> get_coastCenter = coastcenterRepository.findById(Long.valueOf(coastcenter.getOid()));
         if (get_coastCenter.isPresent()) {
             if (get_coastCenter.get().getName() == coastcenter.getName()) {
                 throw new ResourceNotFoundException("This Coast center name exist");

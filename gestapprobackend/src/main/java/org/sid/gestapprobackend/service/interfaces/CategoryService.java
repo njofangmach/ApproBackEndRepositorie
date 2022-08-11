@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CategoryService {
     Category create_category(Category category);
 
-    Optional<Category> update_category(Category category, Long id_category);
+    Optional<Category> update_category(Category category);
 
     void delete_category(Long id_category);
 

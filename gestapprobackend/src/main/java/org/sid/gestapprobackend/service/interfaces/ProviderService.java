@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface ProviderService {
     Provider create_provider(Provider provider);
 
-    Optional<Provider> update_provider(Long id_provider, Provider provider);
+    Optional<Provider> update_provider(Provider provider);
 
     void delete_provider(Integer id_provider);
 

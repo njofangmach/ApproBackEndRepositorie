@@ -27,8 +27,8 @@ public class SiteImplement implements SiteService {
     }
 
     @Override
-    public Optional<Site> update_site(Site site, Integer id_site) {
-        Optional<Site> get_site = siteRepository.findById(Long.valueOf(id_site));
+    public Optional<Site> update_site(Site site) {
+        Optional<Site> get_site = siteRepository.findById(Long.valueOf(site.getOid()));
         if (get_site.isPresent()) {
             if (get_site.get().getName() == site.getName()) {
                 throw new ResourceNotFoundException("This site name exist");

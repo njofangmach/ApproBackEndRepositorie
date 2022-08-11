@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface SiteService {
     Site create_site(Site site);
 
-    Optional<Site> update_site(Site site, Integer id_site);
+    Optional<Site> update_site(Site site);
 
     List<Site> list_site();
 

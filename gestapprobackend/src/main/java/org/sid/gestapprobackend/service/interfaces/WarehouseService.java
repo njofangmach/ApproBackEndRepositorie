@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface WarehouseService {
     Warehouse create_warehouse(Warehouse warehouse);
 
-    Optional<Warehouse> update_warehouse(Warehouse warehouse, Long id);
+    Optional<Warehouse> update_warehouse(Warehouse warehouse);
 
     List<Warehouse> list_warehouse();
 

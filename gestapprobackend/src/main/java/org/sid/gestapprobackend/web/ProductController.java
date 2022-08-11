@@ -31,9 +31,9 @@ public class ProductController {
         return productService.create_product(product);
     }
 
-    @PutMapping(value = "/update_prodcut/{id}")
-    public Optional<Product> update_Product(@RequestBody Product product, @PathVariable Long id) {
-        return productService.update_product(id, product);
+    @PutMapping(value = "/update_prodcut")
+    public Optional<Product> update_Product(@RequestBody Product product) {
+        return productService.update_product(   product);
     }
 
     @GetMapping(value = "/list_product")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CoastcenterService {
     Coastcenter create_coastcenter(Coastcenter coastcenter);
 
-    Optional<Coastcenter> update_coastcenter(Long id_coastcenter, Coastcenter coastcenter);
+    Optional<Coastcenter> update_coastcenter(Coastcenter coastcenter);
 
     void delete_coastcenter(Integer id_coastcenter);
 

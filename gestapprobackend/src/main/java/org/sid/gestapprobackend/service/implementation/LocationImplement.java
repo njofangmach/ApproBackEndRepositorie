@@ -27,8 +27,8 @@ public class LocationImplement implements LocationService {
     }
 
     @Override
-    public Optional<Location> update_location(Long id_location, Location location) {
-        Optional<Location> get_location = locationRepository.findById(Long.valueOf(id_location));
+    public Optional<Location> update_location(Location location) {
+        Optional<Location> get_location = locationRepository.findById(Long.valueOf(location.getOid()));
         if (get_location.isPresent()) {
             if (get_location.get().getName() == location.getName()) {
                 throw new ResourceNotFoundException("This location name exist");

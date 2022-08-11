@@ -27,8 +27,8 @@ public class CompagnyImplement implements CompagnyService {
     }
 
     @Override
-    public Optional<Company> update_compagny(Long id_compagny, Company compagny) {
-        Optional<Company> get_compagny = compagnyRepository.findById(id_compagny);
+    public Optional<Company> update_compagny(Company compagny) {
+        Optional<Company> get_compagny = compagnyRepository.findById(compagny.getOid());
         if (get_compagny.isPresent()) {
             if (get_compagny.get().getName() == compagny.getName()) {
                 throw new ResourceNotFoundException("This compagny name exist");

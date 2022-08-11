@@ -110,7 +110,7 @@ public class CommandImplement implements CommandService {
     }
 
     @Override
-    public Optional<Command> update_command(Long id_command) {
+    public Optional<Command> update_command(Command command) {
         // TODO Auto-generated method stub
         return Optional.empty();
     }

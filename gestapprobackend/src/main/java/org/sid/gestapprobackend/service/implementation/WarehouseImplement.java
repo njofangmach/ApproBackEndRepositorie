@@ -28,8 +28,8 @@ public class WarehouseImplement implements WarehouseService {
     }
 
     @Override
-    public Optional<Warehouse> update_warehouse(Warehouse warehouse, Long id_warehoue) {
-        Optional<Warehouse> get_warehouse = warehouseRepository.findById(id_warehoue);
+    public Optional<Warehouse> update_warehouse(Warehouse warehouse) {
+        Optional<Warehouse> get_warehouse = warehouseRepository.findById(warehouse.getOid());
         if (get_warehouse.isPresent()) {
             if (get_warehouse.get().getName() == warehouse.getName()) {
                 throw new ResourceNotFoundException("This Warehouse name exist");
