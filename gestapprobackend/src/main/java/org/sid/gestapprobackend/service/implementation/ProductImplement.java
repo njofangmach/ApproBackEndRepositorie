@@ -26,7 +26,7 @@ public class ProductImplement implements ProductService {
         if (get_product.isEmpty()) {
             return productRepository.save(product);
         } else {
-            throw new ResourceNotFoundException("This product exist");
+            throw new ResourceNotFoundException("Ce produit existe deja");
         }
     }
 
@@ -35,9 +35,9 @@ public class ProductImplement implements ProductService {
         Optional<Product> get_product = productRepository.findById(product.getOid());
         if (get_product.isPresent()) {
             if (get_product.get().getName() == product.getName()) {
-                throw new ResourceNotFoundException("This product name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_product.get().getBarrecode() == product.getBarrecode()) {
-                throw new ResourceNotFoundException("This Product bare code exist");
+                throw new ResourceNotFoundException("Ce code barre est deja utilisé");
             } else {
                 get_product.get().setName(product.getName());
                 get_product.get().setDescription(product.getDescription());

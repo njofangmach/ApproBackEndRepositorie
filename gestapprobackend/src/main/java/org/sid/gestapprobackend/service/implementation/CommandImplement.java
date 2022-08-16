@@ -61,7 +61,13 @@ public class CommandImplement implements CommandService {
         } else {
             Optional<Command> last_command = commandRepository.findById(command.getOid());
             if (last_command.isPresent()) {
-                last_command.get().setDatecmd(command.getDatecmd());
+                last_command.get().setAsknum(command.getAsknum());
+                last_command.get().setAskdate(command.getAskdate());
+                last_command.get().setDelevrytime(command.getDelevrytime());
+                last_command.get().setReduction(command.getReduction());
+                last_command.get().setCompany(command.getCompany());
+                last_command.get().setWarehouse(command.getWarehouse());
+                last_command.get().setState(command.getState());
                 last_command.get().setNumcmd(command.getNumcmd());
                 last_command.get().setCoastcenter(command.getCoastcenter());
                 last_command.get().setProvider(command.getProvider());
@@ -75,15 +81,19 @@ public class CommandImplement implements CommandService {
                         get_commandLine.get().setUnity(commandLines.get(j).getUnity());
                         get_commandLine.get().setUnitprice(commandLines.get(j).getUnitprice());
                         get_commandLine.get().setReduction(commandLines.get(j).getReduction());
+                        get_commandLine.get().setProduct(commandLines.get(j).getProduct());
+                        get_commandLine.get().setCommand(commandLines.get(j).getCommand());
                         commandlineRepository.save(get_commandLine.get());
                     }
                 }
 
-            }
+            }else{
+                throw new ResourceNotFoundException("Cette comande n'existe pas");}
 
         }
         return (command);
     }
+
     @Override
     public List<CommandLines> CommandLinesByCommand(Command command) {
         return commandlineRepository.findByCommand(command);
@@ -120,6 +130,5 @@ public class CommandImplement implements CommandService {
         // TODO Auto-generated method stub
 
     }
-
 
 }

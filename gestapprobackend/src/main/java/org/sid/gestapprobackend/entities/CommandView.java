@@ -12,7 +12,7 @@ public interface CommandView {
 
     public Date getAskdate();
 
-    public String GetNumcmd();
+    public String getNumcmd();
 
     public  Date getDatecmd();
 

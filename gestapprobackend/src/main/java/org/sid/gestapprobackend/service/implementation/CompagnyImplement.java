@@ -22,18 +22,19 @@ public class CompagnyImplement implements CompagnyService {
         if (getLocation.isEmpty()) {
             return compagnyRepository.save(compagny);
         } else {
-            throw new ResourceNotFoundException("This Compagny exist exist");
+            throw new ResourceNotFoundException("Cette compagnie existe deja");
         }
     }
 
     @Override
     public Optional<Company> update_compagny(Company compagny) {
         Optional<Company> get_compagny = compagnyRepository.findById(compagny.getOid());
+        System.out.println(compagny);
         if (get_compagny.isPresent()) {
             if (get_compagny.get().getName() == compagny.getName()) {
-                throw new ResourceNotFoundException("This compagny name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_compagny.get().getCode() == compagny.getCode()) {
-                throw new ResourceNotFoundException("This compagny code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_compagny.get().setCode(compagny.getCode());
                 get_compagny.get().setName(compagny.getName());
@@ -41,7 +42,7 @@ public class CompagnyImplement implements CompagnyService {
                 return get_compagny;
             }
         } else {
-            throw new ResourceNotFoundException("This compagny don't exist");
+            throw new ResourceNotFoundException("Cette compagnie n'existe pas");
         }
     }
 

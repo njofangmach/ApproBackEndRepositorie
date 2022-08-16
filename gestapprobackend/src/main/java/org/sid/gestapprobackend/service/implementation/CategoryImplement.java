@@ -21,7 +21,7 @@ public class CategoryImplement implements CategoryService {
         if (getCategory.isEmpty()) {
             return categoryRepository.save(category);
         } else {
-            return category;
+            throw new ResourceNotFoundException("Cette categorie existe deja");
         }
     }
 
@@ -30,9 +30,9 @@ public class CategoryImplement implements CategoryService {
         Optional<Category> get_category = categoryRepository.findById(category.getOid());
         if (get_category.isPresent()) {
             if (get_category.get().getName() == category.getName()) {
-                throw new ResourceNotFoundException("This category name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_category.get().getCode() == category.getCode()) {
-                throw new ResourceNotFoundException("This category code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_category.get().setCode(category.getCode());
                 get_category.get().setName(category.getName());
@@ -40,7 +40,7 @@ public class CategoryImplement implements CategoryService {
                 return get_category;
             }
         } else {
-            throw new ResourceNotFoundException("Category don't exist");
+            throw new ResourceNotFoundException("Cette categorie n'existe pas");
         }
     }
 

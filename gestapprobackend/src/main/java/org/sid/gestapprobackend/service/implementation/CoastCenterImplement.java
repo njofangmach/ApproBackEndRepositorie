@@ -23,7 +23,7 @@ public class CoastCenterImplement implements CoastcenterService {
         if (get_coastCenter.isEmpty()) {
             return coastcenterRepository.save(coastcenter);
         } else {
-            throw new ResourceNotFoundException("This coast center exist");
+            throw new ResourceNotFoundException("Cette imputation existe deja");
         }
     }
 
@@ -32,9 +32,9 @@ public class CoastCenterImplement implements CoastcenterService {
         Optional<Coastcenter> get_coastCenter = coastcenterRepository.findById(Long.valueOf(coastcenter.getOid()));
         if (get_coastCenter.isPresent()) {
             if (get_coastCenter.get().getName() == coastcenter.getName()) {
-                throw new ResourceNotFoundException("This Coast center name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_coastCenter.get().getCode() == coastcenter.getCode()) {
-                throw new ResourceNotFoundException("This Coast center code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_coastCenter.get().setCode(coastcenter.getCode());
                 get_coastCenter.get().setName(coastcenter.getName());
@@ -42,7 +42,7 @@ public class CoastCenterImplement implements CoastcenterService {
                 return get_coastCenter;
             }
         } else {
-            throw new ResourceNotFoundException("Coast center don't exist");
+            throw new ResourceNotFoundException("Cette imputation n'existe pas");
         }
     }
 

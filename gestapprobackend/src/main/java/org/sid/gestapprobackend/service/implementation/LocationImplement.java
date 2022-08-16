@@ -22,7 +22,7 @@ public class LocationImplement implements LocationService {
         if (getLocation.isEmpty()) {
             return locationRepository.save(location);
         } else {
-            throw new ResourceNotFoundException("This location exist");
+            throw new ResourceNotFoundException("Cet emplacement existe deja");
         }
     }
 
@@ -30,10 +30,11 @@ public class LocationImplement implements LocationService {
     public Optional<Location> update_location(Location location) {
         Optional<Location> get_location = locationRepository.findById(Long.valueOf(location.getOid()));
         if (get_location.isPresent()) {
+            System.out.println(location);
             if (get_location.get().getName() == location.getName()) {
-                throw new ResourceNotFoundException("This location name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_location.get().getCode() == location.getCode()) {
-                throw new ResourceNotFoundException("This location code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_location.get().setCode(location.getCode());
                 get_location.get().setName(location.getName());
@@ -41,7 +42,7 @@ public class LocationImplement implements LocationService {
                 return get_location;
             }
         } else {
-            throw new ResourceNotFoundException("Location don't exist");
+            throw new ResourceNotFoundException("Cet emplacement n'existe pas");
         }
     }
 

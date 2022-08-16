@@ -23,7 +23,7 @@ public class WarehouseImplement implements WarehouseService {
         if (getwarehouse.isEmpty()) {
             return warehouseRepository.save(warehouse);
         } else {
-            throw new ResourceNotFoundException("This Code warehouse exist");
+            throw new ResourceNotFoundException("Cet entrepot existe deja");
         }
     }
 
@@ -32,9 +32,9 @@ public class WarehouseImplement implements WarehouseService {
         Optional<Warehouse> get_warehouse = warehouseRepository.findById(warehouse.getOid());
         if (get_warehouse.isPresent()) {
             if (get_warehouse.get().getName() == warehouse.getName()) {
-                throw new ResourceNotFoundException("This Warehouse name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_warehouse.get().getCode() == warehouse.getCode()) {
-                throw new ResourceNotFoundException("This warehouse code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_warehouse.get().setCode(warehouse.getCode());
                 get_warehouse.get().setName(warehouse.getName());
@@ -43,7 +43,7 @@ public class WarehouseImplement implements WarehouseService {
                 return get_warehouse;
             }
         } else {
-            throw new ResourceNotFoundException("Warehouse don't exist");
+            throw new ResourceNotFoundException("C'est entrepot n'existe pas");
         }
     }
 

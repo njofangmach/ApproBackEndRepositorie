@@ -22,7 +22,7 @@ public class SiteImplement implements SiteService {
         if (getSite.isEmpty()) {
             return siteRepository.save(site);
         } else {
-            throw new ResourceNotFoundException("This site exist");
+            throw new ResourceNotFoundException("Ce site existe deja");
         }
     }
 
@@ -31,9 +31,9 @@ public class SiteImplement implements SiteService {
         Optional<Site> get_site = siteRepository.findById(Long.valueOf(site.getOid()));
         if (get_site.isPresent()) {
             if (get_site.get().getName() == site.getName()) {
-                throw new ResourceNotFoundException("This site name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_site.get().getCode() == site.getCode()) {
-                throw new ResourceNotFoundException("This site code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_site.get().setCode(site.getCode());
                 get_site.get().setName(site.getName());
@@ -41,7 +41,7 @@ public class SiteImplement implements SiteService {
                 return get_site;
             }
         } else {
-            throw new ResourceNotFoundException("Site don't exist");
+            throw new ResourceNotFoundException("Ce site n'existe pas");
         }
     }
 

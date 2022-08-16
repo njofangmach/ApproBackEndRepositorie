@@ -22,7 +22,7 @@ public class ProviderImplement implements ProviderService {
         if (get_provider.isEmpty()) {
             return providerRepoitory.save(provider);
         } else {
-            throw new ResourceNotFoundException("This provider exist because code or name of this provider are already uset");
+            throw new ResourceNotFoundException("Ce fournisseur existe deja");
         }
     }
 
@@ -31,9 +31,9 @@ public class ProviderImplement implements ProviderService {
         Optional<Provider> get_provider = providerRepoitory.findById(Long.valueOf(provider.getOid()));
         if (get_provider.isPresent()) {
             if (get_provider.get().getName() == provider.getName()) {
-                throw new ResourceNotFoundException("This provider name exist");
+                throw new ResourceNotFoundException("Ce nom est deja utilisé");
             } else if (get_provider.get().getCode() == provider.getCode()) {
-                throw new ResourceNotFoundException("This provider code exist");
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
             } else {
                 get_provider.get().setCode(provider.getCode());
                 get_provider.get().setName(provider.getName());
@@ -41,7 +41,7 @@ public class ProviderImplement implements ProviderService {
                 return get_provider;
             }
         } else {
-            throw new ResourceNotFoundException("Provider don't exist");
+            throw new ResourceNotFoundException("Ce founisseur n'existe pas");
         }
     }
 
