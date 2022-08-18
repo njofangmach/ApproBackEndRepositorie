@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface LocationRepository extends JpaRepository<Location, Long> {
     Optional<Location> findByName(String name);
 
-    java.util.List<Location> findAllByCode(String code);
+    Optional<Location> findByCode(String code);
 
     List<Location> findByNameOrCode(String name, String code);
 

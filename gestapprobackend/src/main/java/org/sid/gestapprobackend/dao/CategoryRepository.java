@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findByName(String name);
 
-    List<Category> findByNameOrCode(String name, String code);
+    Optional<Category> findByCode(String code);
 
     Optional<Category> findAllByNameOrCode(String name, String code);
 

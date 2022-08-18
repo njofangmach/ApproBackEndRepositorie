@@ -18,28 +18,31 @@ public class SiteImplement implements SiteService {
 
     @Override
     public Site create_site(Site site) {
-        List<Site> getSite = siteRepository.findByNameOrCode(site.getName(), site.getCode());
-        if (getSite.isEmpty()) {
-            return siteRepository.save(site);
-        } else {
-            throw new ResourceNotFoundException("Ce site existe deja");
+        if (!siteRepository.findByName(site.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!siteRepository.findByCode(site.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return siteRepository.save(site);
+
     }
 
     @Override
     public Optional<Site> update_site(Site site) {
         Optional<Site> get_site = siteRepository.findById(Long.valueOf(site.getOid()));
         if (get_site.isPresent()) {
-            if (get_site.get().getName() == site.getName()) {
+            if (!siteRepository.findByName(site.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_site.get().getCode() == site.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_site.get().setCode(site.getCode());
-                get_site.get().setName(site.getName());
-                siteRepository.save(get_site.get());
-                return get_site;
             }
+            if (!siteRepository.findByCode(site.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_site.get().setCode(site.getCode());
+            get_site.get().setName(site.getName());
+            siteRepository.save(get_site.get());
+            return get_site;
+
         } else {
             throw new ResourceNotFoundException("Ce site n'existe pas");
         }

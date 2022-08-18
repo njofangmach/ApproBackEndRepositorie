@@ -13,7 +13,6 @@ import javax.persistence.OneToMany;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

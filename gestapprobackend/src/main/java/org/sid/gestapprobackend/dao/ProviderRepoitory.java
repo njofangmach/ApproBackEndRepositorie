@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin("*")
 public interface ProviderRepoitory extends JpaRepository<Provider, Long>{
     Optional<Provider> findByName(String name);
+    Optional<Provider> findByCode(String code);
 
     List<Provider> findByNameOrCode(String name, String code);
 

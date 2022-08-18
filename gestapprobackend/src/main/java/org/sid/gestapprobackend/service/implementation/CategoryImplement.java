@@ -17,28 +17,31 @@ public class CategoryImplement implements CategoryService {
 
     @Override
     public Category create_category(Category category) {
-        List<Category> getCategory = categoryRepository.findByNameOrCode(category.getName(), category.getCode());
-        if (getCategory.isEmpty()) {
-            return categoryRepository.save(category);
-        } else {
-            throw new ResourceNotFoundException("Cette categorie existe deja");
+        if (!categoryRepository.findByName(category.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!categoryRepository.findByCode(category.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return categoryRepository.save(category);
+
     }
 
     @Override
     public Optional<Category> update_category(Category category) {
         Optional<Category> get_category = categoryRepository.findById(category.getOid());
         if (get_category.isPresent()) {
-            if (get_category.get().getName() == category.getName()) {
+            if (!categoryRepository.findByName(category.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_category.get().getCode() == category.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_category.get().setCode(category.getCode());
-                get_category.get().setName(category.getName());
-                categoryRepository.save(get_category.get());
-                return get_category;
             }
+            if (!categoryRepository.findByCode(category.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_category.get().setCode(category.getCode());
+            get_category.get().setName(category.getName());
+            categoryRepository.save(get_category.get());
+            return get_category;
+
         } else {
             throw new ResourceNotFoundException("Cette categorie n'existe pas");
         }

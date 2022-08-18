@@ -18,29 +18,30 @@ public class LocationImplement implements LocationService {
 
     @Override
     public Location create_location(Location location) {
-        List<Location> getLocation = locationRepository.findByNameOrCode(location.getName(), location.getCode());
-        if (getLocation.isEmpty()) {
-            return locationRepository.save(location);
-        } else {
-            throw new ResourceNotFoundException("Cet emplacement existe deja");
+        if (!locationRepository.findByName(location.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!locationRepository.findByCode(location.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return locationRepository.save(location);
     }
 
     @Override
     public Optional<Location> update_location(Location location) {
         Optional<Location> get_location = locationRepository.findById(Long.valueOf(location.getOid()));
         if (get_location.isPresent()) {
-            System.out.println(location);
-            if (get_location.get().getName() == location.getName()) {
+            if (!locationRepository.findByName(location.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_location.get().getCode() == location.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_location.get().setCode(location.getCode());
-                get_location.get().setName(location.getName());
-                locationRepository.save(get_location.get());
-                return get_location;
             }
+            if (!locationRepository.findByCode(location.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_location.get().setCode(location.getCode());
+            get_location.get().setName(location.getName());
+            locationRepository.save(get_location.get());
+            return get_location;
+
         } else {
             throw new ResourceNotFoundException("Cet emplacement n'existe pas");
         }

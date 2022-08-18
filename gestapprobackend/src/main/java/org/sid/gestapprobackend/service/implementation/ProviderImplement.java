@@ -18,28 +18,31 @@ public class ProviderImplement implements ProviderService {
 
     @Override
     public Provider create_provider(Provider provider) {
-        List<Provider> get_provider = providerRepoitory.findByNameOrCode(provider.getName(), provider.getCode());
-        if (get_provider.isEmpty()) {
-            return providerRepoitory.save(provider);
-        } else {
-            throw new ResourceNotFoundException("Ce fournisseur existe deja");
+        if (!providerRepoitory.findByName(provider.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!providerRepoitory.findByCode(provider.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return providerRepoitory.save(provider);
+
     }
 
     @Override
     public Optional<Provider> update_provider(Provider provider) {
         Optional<Provider> get_provider = providerRepoitory.findById(Long.valueOf(provider.getOid()));
         if (get_provider.isPresent()) {
-            if (get_provider.get().getName() == provider.getName()) {
+            if (!providerRepoitory.findByName(provider.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_provider.get().getCode() == provider.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_provider.get().setCode(provider.getCode());
-                get_provider.get().setName(provider.getName());
-                providerRepoitory.save(get_provider.get());
-                return get_provider;
             }
+            if (!providerRepoitory.findByCode(provider.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_provider.get().setCode(provider.getCode());
+            get_provider.get().setName(provider.getName());
+            providerRepoitory.save(get_provider.get());
+            return get_provider;
+
         } else {
             throw new ResourceNotFoundException("Ce founisseur n'existe pas");
         }

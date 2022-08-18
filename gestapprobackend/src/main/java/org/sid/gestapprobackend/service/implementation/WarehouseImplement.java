@@ -19,29 +19,32 @@ public class WarehouseImplement implements WarehouseService {
 
     @Override
     public Warehouse create_warehouse(Warehouse warehouse) {
-        List<Warehouse> getwarehouse = warehouseRepository.findByCode(warehouse.getCode());
-        if (getwarehouse.isEmpty()) {
-            return warehouseRepository.save(warehouse);
-        } else {
-            throw new ResourceNotFoundException("Cet entrepot existe deja");
+        if (!warehouseRepository.findByName(warehouse.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!warehouseRepository.findByCode(warehouse.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return warehouseRepository.save(warehouse);
+
     }
 
     @Override
     public Optional<Warehouse> update_warehouse(Warehouse warehouse) {
         Optional<Warehouse> get_warehouse = warehouseRepository.findById(warehouse.getOid());
         if (get_warehouse.isPresent()) {
-            if (get_warehouse.get().getName() == warehouse.getName()) {
+            if (!warehouseRepository.findByName(warehouse.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_warehouse.get().getCode() == warehouse.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_warehouse.get().setCode(warehouse.getCode());
-                get_warehouse.get().setName(warehouse.getName());
-                get_warehouse.get().setSite(warehouse.getSite());
-                warehouseRepository.save(get_warehouse.get());
-                return get_warehouse;
             }
+            if (!warehouseRepository.findByCode(warehouse.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_warehouse.get().setCode(warehouse.getCode());
+            get_warehouse.get().setName(warehouse.getName());
+            get_warehouse.get().setSite(warehouse.getSite());
+            warehouseRepository.save(get_warehouse.get());
+            return get_warehouse;
+
         } else {
             throw new ResourceNotFoundException("C'est entrepot n'existe pas");
         }

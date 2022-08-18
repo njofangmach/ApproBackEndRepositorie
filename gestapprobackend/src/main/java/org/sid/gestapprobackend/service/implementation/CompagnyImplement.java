@@ -18,12 +18,14 @@ public class CompagnyImplement implements CompagnyService {
 
     @Override
     public Company create_compagny(Company compagny) {
-        List<Company> getLocation = compagnyRepository.findByCode(compagny.getCode());
-        if (getLocation.isEmpty()) {
-            return compagnyRepository.save(compagny);
-        } else {
-            throw new ResourceNotFoundException("Cette compagnie existe deja");
+        if (!compagnyRepository.findByName(compagny.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!compagnyRepository.findByCode(compagny.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return compagnyRepository.save(compagny);
+
     }
 
     @Override
@@ -31,16 +33,17 @@ public class CompagnyImplement implements CompagnyService {
         Optional<Company> get_compagny = compagnyRepository.findById(compagny.getOid());
         System.out.println(compagny);
         if (get_compagny.isPresent()) {
-            if (get_compagny.get().getName() == compagny.getName()) {
+            if (!compagnyRepository.findByName(compagny.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_compagny.get().getCode() == compagny.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_compagny.get().setCode(compagny.getCode());
-                get_compagny.get().setName(compagny.getName());
-                compagnyRepository.save(get_compagny.get());
-                return get_compagny;
             }
+            if (!compagnyRepository.findByCode(compagny.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_compagny.get().setCode(compagny.getCode());
+            get_compagny.get().setName(compagny.getName());
+            compagnyRepository.save(get_compagny.get());
+            return get_compagny;
+
         } else {
             throw new ResourceNotFoundException("Cette compagnie n'existe pas");
         }

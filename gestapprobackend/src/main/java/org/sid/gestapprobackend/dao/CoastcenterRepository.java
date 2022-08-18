@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface CoastcenterRepository extends JpaRepository<Coastcenter, Long> {
     Optional<Coastcenter> findByName(String name);
 
-    List<Coastcenter> findByNameOrCode(String name, String code);
+    Optional<Coastcenter> findByCode( String code);
 
     Optional<Coastcenter> findAllByNameOrCode(String name, String code);
 

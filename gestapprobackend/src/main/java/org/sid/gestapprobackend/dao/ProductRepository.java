@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Optional<Product> findByName(String name);
 
+    Optional<Product> findByBarrecode(String barecode);
+
     List<Product> findByNameOrBarrecode(String name, String barecode);
 
     //Optional<Product> findByNameOrbarrevode(String name, String barrecode);

@@ -18,29 +18,31 @@ public class CoastCenterImplement implements CoastcenterService {
 
     @Override
     public Coastcenter create_coastcenter(Coastcenter coastcenter) {
-        List<Coastcenter> get_coastCenter = coastcenterRepository.findByNameOrCode(coastcenter.getName(),
-                coastcenter.getCode());
-        if (get_coastCenter.isEmpty()) {
-            return coastcenterRepository.save(coastcenter);
-        } else {
-            throw new ResourceNotFoundException("Cette imputation existe deja");
+        if (!coastcenterRepository.findByName(coastcenter.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!coastcenterRepository.findByCode(coastcenter.getCode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code est deja utilisé");
+        }
+        return coastcenterRepository.save(coastcenter);
+
     }
 
     @Override
     public Optional<Coastcenter> update_coastcenter(Coastcenter coastcenter) {
         Optional<Coastcenter> get_coastCenter = coastcenterRepository.findById(Long.valueOf(coastcenter.getOid()));
         if (get_coastCenter.isPresent()) {
-            if (get_coastCenter.get().getName() == coastcenter.getName()) {
+            if (!coastcenterRepository.findByName(coastcenter.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_coastCenter.get().getCode() == coastcenter.getCode()) {
-                throw new ResourceNotFoundException("Ce code est deja utilisé");
-            } else {
-                get_coastCenter.get().setCode(coastcenter.getCode());
-                get_coastCenter.get().setName(coastcenter.getName());
-                coastcenterRepository.save(get_coastCenter.get());
-                return get_coastCenter;
             }
+            if (!coastcenterRepository.findByCode(coastcenter.getCode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code est deja utilisé");
+            }
+            get_coastCenter.get().setCode(coastcenter.getCode());
+            get_coastCenter.get().setName(coastcenter.getName());
+            coastcenterRepository.save(get_coastCenter.get());
+            return get_coastCenter;
+
         } else {
             throw new ResourceNotFoundException("Cette imputation n'existe pas");
         }

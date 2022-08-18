@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @CrossOrigin("*")
 public interface CommandRepository extends JpaRepository<Command, Long> {
 
-    Optional<Command> findByAsknumOrNumcmd(String asknum, String numcmd);
+    Optional<Command> findByAsknum(String asknum);
+
+    Optional<Command> findByNumcmd(String numcmd);
 
     List<CommandView> findAllCommandBy();
 

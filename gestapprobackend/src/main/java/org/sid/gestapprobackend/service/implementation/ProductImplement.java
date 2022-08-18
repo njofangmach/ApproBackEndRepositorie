@@ -22,37 +22,40 @@ public class ProductImplement implements ProductService {
 
     @Override
     public Product create_product(Product product) {
-        List<Product> get_product = productRepository.findByNameOrBarrecode(product.getName(), product.getBarrecode());
-        if (get_product.isEmpty()) {
-            return productRepository.save(product);
-        } else {
-            throw new ResourceNotFoundException("Ce produit existe deja");
+        if (!productRepository.findByName(product.getName()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce nom est deja utilisé");
         }
+        if (!productRepository.findByBarrecode(product.getBarrecode()).isEmpty()) {
+            throw new ResourceNotFoundException("Ce code barre est deja utilisé");
+        }
+        return productRepository.save(product);
+
     }
 
     @Override
     public Optional<Product> update_product(Product product) {
         Optional<Product> get_product = productRepository.findById(product.getOid());
         if (get_product.isPresent()) {
-            if (get_product.get().getName() == product.getName()) {
+            if (!productRepository.findByName(product.getName()).isEmpty()) {
                 throw new ResourceNotFoundException("Ce nom est deja utilisé");
-            } else if (get_product.get().getBarrecode() == product.getBarrecode()) {
-                throw new ResourceNotFoundException("Ce code barre est deja utilisé");
-            } else {
-                get_product.get().setName(product.getName());
-                get_product.get().setDescription(product.getDescription());
-                get_product.get().setBarrecode(product.getBarrecode());
-                get_product.get().setBuyingprice(product.getBuyingprice());
-                get_product.get().setSellingprice(product.getSellingprice());
-                get_product.get().setQtystock(product.getQtystock());
-                get_product.get().setQtyreapro(product.getQtyreapro());
-                get_product.get().setQtyalert(product.getQtyalert());
-                get_product.get().setTva(product.getTva());
-                get_product.get().setLocation(product.getLocation());
-                get_product.get().setCategory(product.getCategory());
-                productRepository.save(get_product.get());
-                return get_product;
             }
+            if (!productRepository.findByBarrecode(product.getBarrecode()).isEmpty()) {
+                throw new ResourceNotFoundException("Ce code barre est deja utilisé");
+            }
+            get_product.get().setName(product.getName());
+            get_product.get().setDescription(product.getDescription());
+            get_product.get().setBarrecode(product.getBarrecode());
+            get_product.get().setBuyingprice(product.getBuyingprice());
+            get_product.get().setSellingprice(product.getSellingprice());
+            get_product.get().setQtystock(product.getQtystock());
+            get_product.get().setQtyreapro(product.getQtyreapro());
+            get_product.get().setQtyalert(product.getQtyalert());
+            get_product.get().setTva(product.getTva());
+            get_product.get().setLocation(product.getLocation());
+            get_product.get().setCategory(product.getCategory());
+            productRepository.save(get_product.get());
+            return get_product;
+
         } else {
             throw new ResourceNotFoundException("this product don't exist");
         }
@@ -93,7 +96,7 @@ public class ProductImplement implements ProductService {
 
     @Override
     public Walkin create_walkin(Walkin walkin) {
-        
+
         return null;
     }
 

@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public interface SiteRepository extends JpaRepository<Site, Long> {
     Optional<Site> findByName(String name);
 
+    Optional<Site> findByCode(String code);
+
     List<Site> findByNameOrCode(String name, String code);
 
     Optional<Site> findAllByNameOrCode(String name, String code);
